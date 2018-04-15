@@ -1,6 +1,6 @@
 import { Record } from 'immutable'
 import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE, START, SUCCESS } from '../constants'
-import { arrToMap } from './utils'
+import { arrToMap, reducerRecord } from './utils'
 
 const ArticleRecord = Record({
     id: null,
@@ -11,13 +11,7 @@ const ArticleRecord = Record({
     comments: []
 })
 
-const ReducerRecord = Record({
-    entities: arrToMap([], ArticleRecord),
-    loading: false,
-    loaded: false
-})
-
-export default (state = ReducerRecord(), action) => {
+export default (state = reducerRecord(ArticleRecord), action) => {
     const { type, payload, randomId, response } = action
 
     switch (type) {
